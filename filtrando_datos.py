@@ -1,3 +1,6 @@
+from sqlite3 import DatabaseError
+
+
 DATA = [
     {
         'name': 'Facundo',
@@ -71,8 +74,28 @@ DATA = [
     },
 ]
 
+
 def run():
-    pass
+    # 1.Extrae todo los programadores de Python
+    all_python_devs = [worker["name"] for worker in DATA if worker["language"] == "python"]
+    # 2.Extrae todo los programdores que trabajan en Platzi
+    all_Platzi_wokers = [worker["name"] for worker in DATA if worker ["organization"] == "Platzi"]
+    # 3. Indica si es mayor a 70 anos en una lista
+    old_people = list(map(lambda worker:worker | {"old": worker["age"]>70}, DATA))
+
+
+    #1
+    for worker in all_python_devs:
+        print("Desarrollan en Python: " + worker)
+
+    #2
+    for worker in all_Platzi_wokers:
+        print("Trabajan en Plazi: " + worker)
+
+    #3
+    for worker in old_people:
+        print(worker)    
+
 
 if __name__ == '__main__':
     run()
